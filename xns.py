@@ -6,7 +6,7 @@ import time
 import logging
 
 # 配置
-DOH_SERVER_IPS = ["172.93.220.162"]  # 阿里 DoH 服务器 IP 地址
+DOH_SERVER_IPS = ["223.5.5.5","223.6.6.6"]  # 阿里 DoH 服务器 IP 地址
 DOH_PORT = 443  # DoH 使用的端口
 CACHE_EXPIRATION = 300  # 缓存过期时间，单位秒
 MAX_RETRIES = 3  # 最大重试次数
@@ -41,7 +41,7 @@ async def fetch_doh_response(data, session):
                 # 创建一个新的 ClientSession，并传入连接器
                 async with aiohttp.ClientSession(connector=connector) as session:
                     # 直接通过 IP 地址连接 DoH 服务器
-                    url = f"https://{DOH_SERVER_IP}:{DOH_PORT}/qtP4UU_wRUY/dns-query"
+                    url = f"https://{DOH_SERVER_IP}:{DOH_PORT}/dns-query"
                     async with session.post(url, data=data, headers=headers, timeout=aiohttp.ClientTimeout(total=10)) as resp:
                         if resp.status == 200:
                             logging.info(f"Successfully fetched DNS response from DoH server {DOH_SERVER_IP}")
